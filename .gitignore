@@ -1,0 +1,7 @@
+*~
+*.json
+*.log
+*-workdir
+*.sqlite
+worker-*
+!worker-template
