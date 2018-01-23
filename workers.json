@@ -1,0 +1,13 @@
+{
+    "debian": {
+        "description": "A debian buildbot",
+        "admin": "someadmin@localhost",
+        "host": "Running in a KVM"
+    },
+    "osx": {
+        "description": "An OSX buildbot",
+	"admin": "otheradmin@localhost",
+        "host": "Running in a KVM"
+    }
+}
+

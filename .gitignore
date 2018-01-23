@@ -1,7 +1,10 @@
 *~
 *.json
+!workers.json
 *.log
+*.pid
 *-workdir
 *.sqlite
+*.tar.gz
 worker-*
 !worker-template
