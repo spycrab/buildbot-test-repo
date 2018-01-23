@@ -1,6 +1,7 @@
 *~
 *.json
 !workers.json
+!config.json
 *.log
 *.pid
 *-workdir
