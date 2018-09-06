@@ -13,7 +13,7 @@ for worker in WORKERS:
     worker_dir = '{}-worker'.format(worker)
     print('----- Creating worker {}...'.format(worker))
     print('-- Initializing...')
-    os.spawnvp(os.P_WAIT, 'buildbot-worker', ['','create-worker', worker_dir, CONFIG['MASTER_ADDRESS'], worker, WORKER_PASSWORDS[worker]])
+    os.spawnvp(os.P_WAIT, 'buildbot-worker', [' ', 'create-worker', worker_dir, CONFIG['MASTER_ADDRESS'], worker, WORKER_PASSWORDS[worker]])
     print('-- Setting information...')
     admin_file = open('{}/info/admin'.format(worker_dir), 'w')
     description_file = open('{}/info/description'.format(worker_dir), 'w')
@@ -22,7 +22,7 @@ for worker in WORKERS:
     admin = WORKERS[worker]['admin']
     description = WORKERS[worker]['description']
     host = WORKERS[worker]['host']
-    
+
     print(admin, file=admin_file)
     print(description, file=description_file)
     print(host, file=description_file)
@@ -31,10 +31,10 @@ for worker in WORKERS:
     print('Description:', description)
     print('Host Description:', host)
 
-    print('-- Packaging {}...'.format(worker_dir)) 
-    os.spawnvp(os.P_WAIT, 'tar', ['', '-czf', '{}.tar.gz'.format(worker_dir), worker_dir])
+    print('-- Packaging {}...'.format(worker_dir))
+    os.spawnvp(os.P_WAIT, 'tar', [' ', '-czf', '{}.tar.gz'.format(worker_dir), worker_dir])
 
     print('-- Cleaning up...')
-    os.spawnvp(os.P_WAIT, 'rm', ['', '-r', worker_dir])
+    os.spawnvp(os.P_WAIT, 'rm', [' ', '-r', worker_dir])
 
     print('=====> Created {}.tar.gz'.format(worker_dir))
