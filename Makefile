@@ -9,6 +9,10 @@ BUILDBOT_WORKER_DEPENDENCIES=buildbot-worker
 # pip
 PIP_OPTIONS=--user --quiet
 
+# Python executables
+PYTHON=python3
+PIP=pip3
+
 
 ### Targets
 
@@ -16,10 +20,10 @@ PIP_OPTIONS=--user --quiet
 deps: worker_deps master_deps
 
 master_deps:
-	pip install ${BUILDBOT_MASTER_DEPENDENCIES} ${PIP_OPTIONS}
+	${PIP} install ${BUILDBOT_MASTER_DEPENDENCIES} ${PIP_OPTIONS}
 
 worker_deps:
-	pip install ${BUILDBOT_WORKER_DEPENDENCIES} ${PIP_OPTIONS}
+	${PIP} install ${BUILDBOT_WORKER_DEPENDENCIES} ${PIP_OPTIONS}
 
 # Common commands
 start:
@@ -33,6 +37,9 @@ init: deps
 	buildbot upgrade-master master
 
 create-workers:
-	python tools/create-workers.py
+	python3 tools/create-workers.py
 
-.PHONY: deps master_deps worker_deps start stop restart init
+clean:
+	rm -vf *.tar.gz
+
+.PHONY: deps master_deps worker_deps start stop restart init clean
