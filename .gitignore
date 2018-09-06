@@ -9,3 +9,4 @@
 *.tar.gz
 worker-*
 !worker-template
+!worker-passwords.json.example
