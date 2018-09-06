@@ -13,7 +13,7 @@ for worker in WORKERS:
     worker_dir = '{}-worker'.format(worker)
     print('----- Creating worker {}...'.format(worker))
     print('-- Initializing...')
-    os.spawnvp(os.P_WAIT, 'buildbot-worker', ['','create-worker', worker_dir, CONFIG['MASTER_ADDRESS'], worker_dir, WORKER_PASSWORDS[worker]])
+    os.spawnvp(os.P_WAIT, 'buildbot-worker', ['','create-worker', worker_dir, CONFIG['MASTER_ADDRESS'], worker, WORKER_PASSWORDS[worker]])
     print('-- Setting information...')
     admin_file = open('{}/info/admin'.format(worker_dir), 'w')
     description_file = open('{}/info/description'.format(worker_dir), 'w')
