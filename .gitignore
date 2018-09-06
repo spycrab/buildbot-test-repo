@@ -7,6 +7,5 @@
 *-workdir
 *.sqlite
 *.tar.gz
-worker-*
-!worker-template
+*-worker
 !worker-passwords.json.example
