@@ -16,6 +16,7 @@ PIP=pip3
 
 ### Targets
 
+all: help
 
 deps: worker_deps master_deps
 
@@ -33,13 +34,27 @@ stop:
 restart:
 	cd master && buildbot restart
 
-init: deps
+worker-passwords.json:
+	@echo "ERROR: You have to create a valid worker-passwords.json before you can run this command"
+	@false
+
+init: worker-passwords.json deps
 	buildbot upgrade-master master
 
-create-workers:
+create-workers: worker-passwords.json
 	python3 tools/create-workers.py
 
 clean:
 	rm -vf *.tar.gz
 
-.PHONY: deps master_deps worker_deps start stop restart init clean
+help:
+	@echo "make help - Shows this"
+	@echo "make init - Sets up a buildbot server and its dependencies"
+	@echo "     make worker_deps - Only install dependencies for workers"
+	@echo "make create-workers - Creates worker-NAME.tar.gz archives for you to deploy"
+	@echo "make clean - Remove worker archives"
+	@echo "make start - Starts the server"
+	@echo "make stop - Stops the server"
+	@echo "make restart - Restarts the server"
+
+.PHONY: deps master_deps worker_deps start stop restart init clean help all
